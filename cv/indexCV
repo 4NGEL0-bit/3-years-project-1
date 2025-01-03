@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUENNNANI MOHAMMED ILYASS - Web Developer</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <!-- Background Animations -->
+    <div class="background-animations">
+        <div class="geometric-shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+        <div class="grid-lines"></div>
+        <div class="glow-orbs">
+            <div class="orb orb1"></div>
+            <div class="orb orb2"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">GUENNNANI MOHAMMED ILYASS</h1>
+                <p class="subtitle">WEB DEVELOPER • SECURITY SPECIALIST</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>About Me</h3>
+                        <p>Passionate Web Developer with a growing interest in security practices. Focused on creating efficient and secure web solutions while continuously learning new technologies.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Current Focus</h3>
+                        <ul>
+                            <li>Web Development</li>
+                            <li>Learning Security Basics</li>
+                            <li>Database Management</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li>📧 darklight@admin.com</li>
+                            <li>📍 Morocco</li>
+                            <li>💼 Open to Opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Development</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">HTML/CSS</li>
+                        <li class="skill-item">PHP</li>
+                        <li class="skill-item">Python</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">C/C++</li>
+                        <li class="skill-item">SQL</li>
+                        <li class="skill-item">Linux</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-input" required>
+                        <option value="">Select Interest Area</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="collaboration">Collaboration</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Add interactive hover effects to skill items
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.style.transform = 'translateX(10px)';
+                item.style.boxShadow = '0 0 20px rgba(0, 247, 255, 0.2)';
+            });
+            
+            item.addEventListener('mouseout', () => {
+                item.style.transform = 'translateX(0)';
+                item.style.boxShadow = 'none';
+            });
+        });
+
+        // Add more floating shapes dynamically
+        function createFloatingShapes() {
+            const shapes = document.querySelector('.geometric-shapes');
+            for (let i = 0; i < 5; i++) {
+                const shape = document.createElement('div');
+                shape.className = 'shape';
+                shape.style.top = Math.random() * 100 + '%';
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.animationDelay = Math.random() * 5 + 's';
+                shapes.appendChild(shape);
+            }
+        }
+
+        createFloatingShapes();
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
