@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEMF Student ID</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 850px;
+            position: relative;
+            border: 2px solid #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0,0,0,0.25);
+            background: white;
+        }
+
+        .header {
+            background: #003087;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 5px;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 7px;
+            line-height: 1.4;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 32px;
+            text-align: center;
+            line-height: 1.2;
+            width: 70%;
+            padding-left: 100px; /* Added padding to move text more to the right */
+        }
+
+        .content {
+            background: #f8f8f8;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+        }
+
+        .photo {
+            width: 220px;
+            height: 280px;
+            border: 2px solid #000;
+            object-fit: cover;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding-top: 10px;
+        }
+
+        .field-label {
+            color: #6495ED;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .field-value {
+            font-size: 18px;
+            color: #000;
+        }
+
+        .progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: white;
+            border-top: 1px solid #000;
+        }
+
+        .progress-bar {
+            width: 70%;
+            height: 100%;
+            background: #00FF00;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://www.ueuromed.org/sites/default/files/2020-11/logo_blanc.png" alt="UEMF" class="logo">
+            
+            </div>
+            <div class="header-title">
+                Carte d'étudiant<br>
+                Student ID
+            </div>
+        </div>
+        <div class="content">
+            <img src="https://m.media-amazon.com/images/M/MV5BM2JkNGU0ZGMtZjVjNS00NjgyLWEyOWYtZmRmZGQyN2IxZjA2XkEyXkFqcGdeQXVyNjc5Mjg0NjU@._V1_.jpg" alt="Student Photo" class="photo">
+            <div class="details">
+                <div>
+                    <div class="field-label">Establishment | Etablissement</div>
+                    <div class="field-value">ÉCOLE D'INGÉNIERIE, DIGITAL ET<br>D'INTELLIGENCE ARTIFICIELLE</div>
+                </div>
+                <div>
+                    <div class="field-label">Full Name | Nom et Prénom</div>
+                    <div class="field-value">Alias Alderson</div>
+                </div>
+                <div>
+                    <div class="field-label">Registration number | Matricule</div>
+                    <div class="field-value">2222222</div>
+                </div>
+                <div>
+                    <div class="field-label">Personal bank details | RIB Personnel</div>
+                    <div class="field-value">11111111111111111111111111111111111111</div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+</body>
+</html>
