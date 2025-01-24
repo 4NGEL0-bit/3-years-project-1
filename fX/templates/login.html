@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-pink: #ff2d8d;
+            --cyber-blue: #0ff0fc;
+            --cyber-purple: #8b2dff;
+            --dark-bg: #0a0a1f;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, var(--cyber-blue) 50%, transparent 100%) 0 0 / 200% 100%,
+                linear-gradient(0deg, transparent 0%, var(--cyber-pink) 50%, transparent 100%) 0 0 / 100% 200%;
+            opacity: 0.1;
+            animation: moveLines 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes moveLines {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 200% 0%, 0% 200%; }
+        }
+
+        .login-container {
+            background: rgba(10, 10, 31, 0.8);
+            border: 2px solid var(--cyber-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            animation: glowPulse 3s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(15, 240, 252, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(15, 240, 252, 0.5); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--cyber-blue);
+            position: relative;
+        }
+
+        .login-header h2 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .login-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            background: rgba(10, 10, 31, 0.6);
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+        }
+
+        .form-control:focus {
+            background: rgba(10, 10, 31, 0.8);
+            border-color: var(--cyber-pink);
+            box-shadow: 0 0 15px rgba(255, 45, 141, 0.3);
+            color: var(--cyber-blue);
+        }
+
+        .form-floating label {
+            color: var(--cyber-blue);
+        }
+
+        .btn-cyber {
+            background: transparent;
+            border: 2px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.8rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-cyber:hover {
+            background: var(--cyber-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--cyber-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-cyber:hover::before {
+            left: 100%;
+        }
+
+        .role-selector {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 0.5rem;
+            margin: 0 0.5rem;
+            background: transparent;
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .role-btn.active {
+            background: var(--cyber-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .role-btn:hover {
+            background: rgba(15, 240, 252, 0.1);
+        }
+
+        .cyber-scanner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--cyber-blue);
+            animation: scan 2s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(400px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-lines"></div>
+    
+    <div class="container">
+        <div class="login-container">
+            <div class="cyber-scanner"></div>
+            <div class="login-header">
+                <h2>Access Portal</h2>
+            </div>
+            
+            <div class="role-selector">
+                <button class="role-btn active" onclick="setRole('student')">Student</button>
+                <button class="role-btn" onclick="setRole('teacher')">Teacher</button>
+                <button class="role-btn" onclick="setRole('admin')">Admin</button>
+            </div>
+
+            <form onsubmit="login(); return false;">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                    <label for="username">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
+                <button type="submit" class="btn-cyber">Initialize Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentRole = 'student';
+
+        function setRole(role) {
+            currentRole = role;
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Add your login logic here
+            if (username && password) {
+                switch(currentRole) {
+                    case 'student':
+                        window.location.href = 'student_matrix.html';
+                        break;
+                    case 'teacher':
+                        window.location.href = 'teacher_cyber.html';
+                        break;
+                    case 'admin':
+                        window.location.href = 'admin_dashboard.html';
+                        break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #b700ff;
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --dark-bg: #0a0014;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            font-family: 'Blade Runner', 'Orbitron', sans-serif;
+            color: var(--neon-purple);
+        }
+
+        .power-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, var(--neon-purple) 1px, transparent 1px) 0 0 / 30px 30px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+            animation: pulse 4s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
+
+        .navbar {
+            background: rgba(10, 0, 20, 0.9) !important;
+            border-bottom: 2px solid var(--neon-purple);
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--neon-purple) !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-pink) !important;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .control-panel {
+            background: rgba(10, 0, 20, 0.8);
+            border: 2px solid var(--neon-purple);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 0 20px rgba(183, 0, 255, 0.2);
+        }
+
+        .control-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(183, 0, 255, 0.1) 50%, transparent 100%);
+            animation: scanline 2s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stats-monitor {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .system-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .system-item {
+            border-left: 3px solid var(--neon-purple);
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(183, 0, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .system-status {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .status-online {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .status-warning {
+            background: rgba(255, 255, 0, 0.2);
+            color: #ffff00;
+        }
+
+        .status-error {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff0000;
+        }
+
+        .btn-admin {
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-admin:hover {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+    </style>
+</head>
+<body>
+    <div class="power-grid"></div>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ADMIN CONTROL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">System</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Security</a>
+                    </li>
+                </ul>
+                <a href="login.html" class="btn btn-admin">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="control-panel">
+                    <h4>System Status</h4>
+                    <div class="stats-monitor">98.7%</div>
+                    <div class="system-list mt-3">
+                        <div class="system-item">
+                            Database Server
+                            <span class="system-status status-online">ONLINE</span>
+                        </div>
+                        <div class="system-item">
+                            Authentication Service
+                            <span class="system-status status-online">ONLINE</span>
+                        </div>
+                        <div class="system-item">
+                            File Storage
+                            <span class="system-status status-warning">85% FULL</span>
+                        </div>
+                        <div class="system-item">
+                            Backup System
+                            <span class="system-status status-error">SCHEDULED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="control-panel">
+                    <h4>User Analytics</h4>
+                    <div class="stats-monitor">1,234</div>
+                    <div class="system-list mt-3">
+                        <div class="system-item">
+                            Active Users
+                            <span class="system-status status-online">847</span>
+                        </div>
+                        <div class="system-item">
+                            Teachers Online
+                            <span class="system-status status-online">42</span>
+                        </div>
+                        <div class="system-item">
+                            New Registrations
+                            <span class="system-status status-warning">156</span>
+                        </div>
+                        <div class="system-item">
+                            System Alerts
+                            <span class="system-status status-error">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
