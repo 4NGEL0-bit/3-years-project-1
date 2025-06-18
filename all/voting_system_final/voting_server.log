@@ -1,0 +1,44 @@
+Jun 17, 2025 2:06:15 AM com.example.votingsystem.Server setupLogging
+INFO: Server logging initialized
+Jun 17, 2025 2:06:15 AM com.example.votingsystem.Server initializeData
+INFO: Vote data initialized
+Jun 17, 2025 2:06:15 AM com.example.votingsystem.Server start
+INFO: Server started on port 9876
+Jun 17, 2025 2:06:40 AM com.example.votingsystem.Server start
+INFO: Client connected: 127.0.0.1
+Jun 17, 2025 2:06:40 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: REGISTER|1|1
+Jun 17, 2025 2:06:40 AM com.example.votingsystem.Server$ClientHandler handleRegister
+INFO: User registered successfully: 1
+Jun 17, 2025 2:06:48 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: LOGIN|1|1
+Jun 17, 2025 2:06:48 AM com.example.votingsystem.Server$ClientHandler handleLogin
+INFO: User logged in successfully: 1
+Jun 17, 2025 2:06:48 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: POLL
+Jun 17, 2025 2:06:48 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: HASVOTED|1
+Jun 17, 2025 2:06:53 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: VOTE|1|Java
+Jun 17, 2025 2:06:53 AM com.example.votingsystem.Server$ClientHandler handleVote
+INFO: Vote recorded for user 1: Java
+Jun 17, 2025 2:06:54 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: RESULTS
+Jun 17, 2025 2:07:01 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: REGISTER|2|2
+Jun 17, 2025 2:07:01 AM com.example.votingsystem.Server$ClientHandler handleRegister
+INFO: User registered successfully: 2
+Jun 17, 2025 2:07:03 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: LOGIN|2|2
+Jun 17, 2025 2:07:03 AM com.example.votingsystem.Server$ClientHandler handleLogin
+INFO: User logged in successfully: 2
+Jun 17, 2025 2:07:03 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: POLL
+Jun 17, 2025 2:07:03 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: HASVOTED|2
+Jun 17, 2025 2:07:07 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: VOTE|2|Python
+Jun 17, 2025 2:07:07 AM com.example.votingsystem.Server$ClientHandler handleVote
+INFO: Vote recorded for user 2: Python
+Jun 17, 2025 2:07:08 AM com.example.votingsystem.Server$ClientHandler processRequest
+INFO: Received request: RESULTS
