@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clinic-app-deployment
+  labels:
+    app: clinic-app
+    tier: frontend
+spec:
+  replicas: 2 # Start with 2 replicas, can be adjusted
+  selector:
+    matchLabels:
+      app: clinic-app
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: clinic-app
+        tier: frontend
+    spec:
+      containers:
+        - name: clinic-app-php
+          image: your-dockerhub-username/clinic-app-php:latest # IMPORTANT: Replace with your actual image name and tag
+          # If using a local image not pushed to a registry, ensure your K8s cluster can access it (e.g., minikube load image)
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: DB_HOST
+              value: "mysql-clinic-service" # Kubernetes service name for MySQL
+            - name: DB_USER
+              value: "root" # Or "clinicuser" if you prefer
+            - name: DB_PASS
+              value: "rootpassword" # Consider using Secrets for production
+            - name: DB_NAME
+              value: "clinic_db"
+          # Volume mounts for code are not typical for K8s deployments in the same way as Docker Compose for dev.
+          # The code should be baked into the Docker image.
+          # If you need to mount config files, use ConfigMaps.
+

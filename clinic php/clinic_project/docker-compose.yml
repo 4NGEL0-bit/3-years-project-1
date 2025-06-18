@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: clinic_app_php
+    ports:
+      - "8080:80" # Map host port 8080 to container port 80
+    volumes:
+      - .:/var/www/html # Mount current directory (clinic_project) to Apache web root
+    depends_on:
+      - db
+    environment:
+      # The PHP application (db.php) will connect to 'db' on port 3306
+      DB_HOST: db
+      DB_USER: root # Matches MYSQL_USER or MYSQL_ROOT_USER
+      DB_PASS: rootpassword # Matches MYSQL_ROOT_PASSWORD
+      DB_NAME: clinic_db # Matches MYSQL_DATABASE
+    networks:
+      - clinic_network
+
+  db:
+    image: mysql:8.0
+    container_name: clinic_app_db
+    ports:
+      - "33066:3306" # Map host port 33066 to container port 3306 (for external access if needed)
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: clinic_db
+      MYSQL_USER: clinicuser # Optional: create a dedicated user
+      MYSQL_PASSWORD: clinicpassword # Optional: password for the dedicated user
+    volumes:
+      - db_data:/var/lib/mysql # Persist database data
+      # You can also mount the schema.sql to initialize the database on first run
+      # - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - clinic_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: clinic_app_phpmyadmin
+    ports:
+      - "8081:80" # Map host port 8081 to phpMyAdmin container port 80
+    environment:
+      PMA_HOST: db # Connect to the 'db' service
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword # So phpMyAdmin can login as root
+    depends_on:
+      - db
+    networks:
+      - clinic_network
+
+volumes:
+  db_data: # Define a named volume for database persistence
+
+networks:
+  clinic_network: # Define a custom network
+    driver: bridge
+

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-clinic-service
+  labels:
+    app: phpmyadmin-clinic
+    tier: management
+spec:
+  type: LoadBalancer # Or NodePort, for external access
+  ports:
+    - port: 80
+      targetPort: 80 # Matches containerPort in phpmyadmin-deployment
+      # nodePort: 30081 # If using NodePort, specify a port (optional)
+  selector:
+    app: phpmyadmin-clinic
+    tier: management
+

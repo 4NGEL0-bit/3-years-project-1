@@ -1,0 +1,469 @@
+/* dashboard_style.css - Styles for dashboard and internal pages */
+
+/* Inherits from style.css for base styles */
+
+body {
+    /* Override body styles from style.css if needed for dashboard layout */
+    /* For example, if dashboard isn't centered like the login page */
+    display: flex;
+    flex-direction: column; /* Allow header, main, footer stacking */
+    align-items: stretch; /* Stretch items to full width */
+    background-color: var(--bg-dark); /* Ensure consistent background */
+    min-height: 100vh;
+}
+
+.main-header {
+    background: linear-gradient(90deg, var(--secondary-color), var(--bg-panel));
+    padding: 15px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDownHeader 0.7s ease-out;
+}
+
+@keyframes slideDownHeader {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--font-headings);
+    font-size: 1.8em;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 25px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+    text-shadow: none;
+}
+
+.user-info span {
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.main-content {
+    flex-grow: 1;
+    width: 90%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: var(--bg-panel);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: fadeInContent 1s ease-out 0.5s backwards;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.dashboard-header h1 {
+    font-family: var(--font-headings);
+    color: var(--accent-color);
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+}
+
+.dashboard-header p {
+    color: var(--text-light);
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.main-content h2 {
+    font-family: var(--font-headings);
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.dashboard-card {
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--accent-color);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.3);
+}
+
+.dashboard-card h3 {
+    font-family: var(--font-headings);
+    color: var(--accent-color);
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.dashboard-card p {
+    color: var(--text-color);
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.dashboard-card a.card-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-card a.card-link:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-light);
+    transform: scale(1.05);
+}
+
+/* Table styles for appointments, user lists etc. */
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+}
+
+.content-table thead tr {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+    text-align: left;
+    font-weight: bold;
+    font-family: var(--font-headings);
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.content-table tbody tr {
+    background-color: var(--bg-panel);
+    color: var(--text-color);
+    transition: background-color 0.2s ease;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: var(--secondary-color); /* Slightly different for alternating rows */
+}
+
+.content-table tbody tr:hover {
+    background-color: #2a3b4d; /* Darker hover for rows */
+    color: var(--accent-color);
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.content-table .action-links a {
+    color: var(--accent-color);
+    margin-right: 10px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.content-table .action-links a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+/* Form styles within dashboard pages */
+.dashboard-form .form-group {
+    margin-bottom: 20px;
+}
+.dashboard-form label {
+    display: block;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-family: var(--font-primary);
+}
+.dashboard-form input[type="text"],
+.dashboard-form input[type="email"],
+.dashboard-form input[type="password"],
+.dashboard-form input[type="date"],
+.dashboard-form input[type="time"],
+.dashboard-form input[type="tel"],
+.dashboard-form input[type="number"],
+.dashboard-form select,
+.dashboard-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.dashboard-form input:focus,
+.dashboard-form select:focus,
+.dashboard-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+}
+
+.dashboard-form button[type="submit"],
+.dashboard-form .btn-login /* Apply same style to buttons with this class */
+{
+    padding: 12px 25px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border: none;
+    border-radius: 8px;
+    color: var(--bg-light);
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    display: inline-block; /* Ensure buttons behave consistently */
+    text-align: center;
+}
+
+.dashboard-form button[type="submit"]:hover,
+.dashboard-form .btn-login:hover
+{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.25);
+}
+
+/* Filter Form Specific Styles */
+.filter-form {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.filter-form form {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    align-items: flex-end; /* Align items to the bottom */
+    gap: 15px; /* Space between form elements */
+}
+
+.filter-form .form-group {
+    flex: 1; /* Allow form groups to grow */
+    min-width: 150px; /* Minimum width for inputs */
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.filter-form label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.filter-form input,
+.filter-form select {
+    padding: 10px 12px; /* Slightly smaller padding for filter inputs */
+}
+
+.filter-form button[type="submit"],
+.filter-form .btn-secondary /* Style Clear button */
+{
+    padding: 10px 20px; /* Adjust button padding */
+    margin-left: 5px; /* Add slight margin if needed */
+    align-self: flex-end; /* Ensure buttons align with bottom of inputs */
+    height: 42px; /* Match input height (adjust based on padding/border) */
+    box-sizing: border-box;
+}
+
+/* Ensure Clear button has secondary style */
+.filter-form .btn-secondary {
+    background: var(--input-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-form .btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
+    font-size: 0.9em;
+    border-top: 1px solid var(--accent-color);
+}
+
+.footer-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Utility classes for dashboard */
+.text-accent {
+    color: var(--accent-color);
+}
+
+.mt-20 { margin-top: 20px !important; }
+.mb-20 { margin-bottom: 20px !important; }
+
+.status-scheduled { color: #ffc107; font-weight: bold; }
+.status-completed { color: #28a745; font-weight: bold; }
+.status-cancelled { color: #dc3545; font-weight: bold; }
+.status-checked-in { color: #17a2b8; font-weight: bold; }
+.status-doctor { background-color: #007bff; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; }
+.status-nurse { background-color: #17a2b8; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; }
+.status-patient { background-color: #6c757d; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; }
+.status-admin { background-color: #dc3545; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; }
+
+.btn-secondary {
+    padding: 10px 20px;
+    background-color: var(--input-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block; /* Ensure consistent behavior */
+    text-align: center;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+}
+
+/* Animated table */
+@keyframes fadeInUpTable { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+.animated-table {
+    animation: fadeInUpTable 0.8s ease-out forwards;
+}
+
+/* Animated form */
+@keyframes fadeInUpForm { 
+    from { opacity: 0; transform: translateY(30px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+.animated-form {
+    animation: fadeInUpForm 0.8s ease-out 0.2s backwards; /* Delay slightly */
+}
+
+/* Animated cards */
+@keyframes popInCard {
+    0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+    80% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animated-card {
+    animation: popInCard 0.6s ease-out backwards;
+}
+/* Stagger card animations */
+.dashboard-grid .dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-grid .dashboard-card:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-grid .dashboard-card:nth-child(3) { animation-delay: 0.3s; }
+.dashboard-grid .dashboard-card:nth-child(4) { animation-delay: 0.4s; }
+.dashboard-grid .dashboard-card:nth-child(5) { animation-delay: 0.5s; }
+.dashboard-grid .dashboard-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Error and Success Messages */
+.error-message-login, .success-message-login, .info-message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    text-align: center;
+    animation: fadeInMessage 0.5s ease-out;
+}
+
+.error-message-login {
+    background-color: rgba(220, 53, 69, 0.2); /* Red tint */
+    color: #f8d7da; /* Light red text */
+    border: 1px solid #dc3545;
+}
+
+.success-message-login {
+    background-color: rgba(40, 167, 69, 0.2); /* Green tint */
+    color: #d4edda; /* Light green text */
+    border: 1px solid #28a745;
+}
+
+.info-message {
+    background-color: rgba(23, 162, 184, 0.15); /* Info blue tint */
+    color: #d1ecf1; /* Light blue text */
+    border: 1px solid #17a2b8;
+}
+
+@keyframes fadeInMessage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+

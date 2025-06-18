@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  labels:
+    app: mysql-clinic
+    tier: database
+spec:
+  accessModes:
+    - ReadWriteOnce # Suitable for a single database pod
+  resources:
+    requests:
+      storage: 5Gi # Adjust storage size as needed
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-clinic-deployment
+  labels:
+    app: mysql-clinic
+    tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-clinic
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: mysql-clinic
+        tier: database
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+              name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "rootpassword" # Consider using Secrets for production
+            - name: MYSQL_DATABASE
+              value: "clinic_db"
+            - name: MYSQL_USER
+              value: "clinicuser"
+            - name: MYSQL_PASSWORD
+              value: "clinicpassword" # Consider using Secrets for production
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+            # To initialize with schema.sql, you would typically use an init container
+            # or a ConfigMap and a custom entrypoint script in your MySQL image.
+            # For simplicity, this example assumes manual schema import or an image with schema.
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+

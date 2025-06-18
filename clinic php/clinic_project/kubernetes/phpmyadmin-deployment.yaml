@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin-clinic-deployment
+  labels:
+    app: phpmyadmin-clinic
+    tier: management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin-clinic
+      tier: management
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin-clinic
+        tier: management
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin/phpmyadmin:latest
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: PMA_HOST
+              value: "mysql-clinic-service" # Kubernetes service name for MySQL
+            - name: PMA_PORT
+              value: "3306"
+            - name: MYSQL_ROOT_PASSWORD # PMA uses this to allow root login if configured
+              value: "rootpassword" # Consider using Secrets for production
+            # - name: PMA_USER
+            #   value: "clinicuser"
+            # - name: PMA_PASSWORD
+            #   value: "clinicpassword"
+
